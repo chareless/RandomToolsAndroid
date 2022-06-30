@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/zamansayarButton"
+        android:layout_width="115dp"
+        android:layout_height="70dp"
+        android:onClick="zamansayarClick"
+        android:text="zaman sayaçları"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/favoriyerButton"
+        app:layout_constraintEnd_toStartOf="@+id/favoriyerButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/favoriyerButton" />
+
+    <Button
+        android:id="@+id/favoriyerButton"
+        android:layout_width="115dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="16dp"
+        android:onClick="favoriyerClick"
+        android:text="Favori Yerler"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/parasayarButton" />
+
+    <Button
+        android:id="@+id/idealkiloButton"
+        android:layout_width="115dp"
+        android:layout_height="70dp"
+        android:onClick="kiloClick"
+        android:text="ideal kilo"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/parasayarButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/parasayarButton"
+        app:layout_constraintTop_toTopOf="@+id/parasayarButton" />
+
+    <Button
+        android:id="@+id/parasayarButton"
+        android:layout_width="115dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="16dp"
+        android:onClick="parasayarClick"
+        android:text="para sayar"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hesapmakinesiButton" />
+
+    <Button
+        android:id="@+id/listeButton"
+        android:layout_width="115dp"
+        android:layout_height="70dp"
+        android:onClick="listeClick"
+        android:text="liste hesapla"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/parasayarButton"
+        app:layout_constraintEnd_toStartOf="@+id/parasayarButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/parasayarButton" />
+
+    <Button
+        android:id="@+id/yuzdelikButton"
+        android:layout_width="115dp"
+        android:layout_height="70dp"
+        android:onClick="yuzdelikClick"
+        android:text="yüzdelik hesaplar"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/hesapmakinesiButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/hesapmakinesiButton"
+        app:layout_constraintTop_toTopOf="@+id/hesapmakinesiButton" />
+
+    <Button
+        android:id="@+id/hesapmakinesiButton"
+        android:layout_width="115dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="16dp"
+        android:onClick="hesapmakineClick"
+        android:text="hesap makinesi"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/randomnumaraButton" />
+
+    <Button
+        android:id="@+id/notButton"
+        android:layout_width="115dp"
+        android:layout_height="70dp"
+        android:onClick="notClick"
+        android:text="not defteri"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/hesapmakinesiButton"
+        app:layout_constraintEnd_toStartOf="@+id/hesapmakinesiButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/hesapmakinesiButton" />
+
+    <Button
+        android:id="@+id/randomnumaraButton"
+        android:layout_width="115dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="16dp"
+        android:onClick="rastgelesecClick"
+        android:text="rastgele numara"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tkmButton" />
+
+    <Button
+        android:id="@+id/randomsifreButton"
+        android:layout_width="115dp"
+        android:layout_height="70dp"
+        android:onClick="rastgelesifreClick"
+        android:text="rastgele şifre"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/randomnumaraButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/randomnumaraButton"
+        app:layout_constraintTop_toTopOf="@+id/randomnumaraButton" />
+
+    <Button
+        android:id="@+id/kuraButton"
+        android:layout_width="115dp"
+        android:layout_height="70dp"
+        android:onClick="kuracekClick"
+        android:text="kura çek"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/randomnumaraButton"
+        app:layout_constraintEnd_toStartOf="@+id/randomnumaraButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/randomnumaraButton" />
+
+    <Button
+        android:id="@+id/yazituraButton"
+        android:layout_width="115dp"
+        android:layout_height="70dp"
+        android:onClick="yazituraClick"
+        android:text="yazı tura"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tkmButton"
+        app:layout_constraintEnd_toStartOf="@+id/tkmButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tkmButton" />
+
+    <Button
+        android:id="@+id/tkmButton"
+        android:layout_width="115dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="50dp"
+        android:onClick="tkmClick"
+        android:text="taş kağıt makas"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/zaratButton"
+        android:layout_width="115dp"
+        android:layout_height="70dp"
+        android:onClick="zaratClick"
+        android:text="Zar at"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tkmButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tkmButton"
+        app:layout_constraintTop_toTopOf="@+id/tkmButton" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

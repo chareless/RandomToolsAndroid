@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".KuraActivity">
+
+    <EditText
+        android:id="@+id/kuraKatilanlarText"
+        android:layout_width="327dp"
+        android:layout_height="213dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="Her satırda bir katılımcı olacak şekilde yazın."
+        android:inputType="textMultiLine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/kuraKazananlarText"
+        android:layout_width="156dp"
+        android:layout_height="187dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:focusable="false"
+        android:gravity="start|top"
+        android:hint="Sonuçlar"
+        android:inputType="textMultiLine"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/kuraKatilanlarText"
+        app:layout_constraintTop_toBottomOf="@+id/resultTextView" />
+
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:onClick="backClick"
+        android:text="geri"
+        app:layout_constraintStart_toStartOf="@+id/sayiText1"
+        app:layout_constraintTop_toBottomOf="@+id/kuraKazananlarText" />
+
+    <TextView
+        android:id="@+id/winnerCountTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Kazanacak Kişi Sayısı"
+        app:layout_constraintStart_toStartOf="@+id/kuraKatilanlarText"
+        app:layout_constraintTop_toBottomOf="@+id/kuraKatilanlarText" />
+
+    <TextView
+        android:id="@+id/resultTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Sonuçlar"
+        app:layout_constraintEnd_toEndOf="@+id/kuraKatilanlarText"
+        app:layout_constraintTop_toBottomOf="@+id/kuraKatilanlarText" />
+
+    <EditText
+        android:id="@+id/sayiText1"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Kaç kişi kazanacak?"
+        android:inputType="number"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/winnerCountTextView"
+        app:layout_constraintTop_toBottomOf="@+id/winnerCountTextView" />
+
+    <Button
+        android:id="@+id/yuzdeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:onClick="kuracekClick"
+        android:text="kura çek"
+        app:layout_constraintEnd_toEndOf="@+id/kuraKazananlarText"
+        app:layout_constraintTop_toBottomOf="@+id/kuraKazananlarText" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

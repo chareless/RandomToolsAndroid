@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.deniz.randomtools">
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@drawable/tools"
+        android:label="Rastgele Araçlar"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.RandomTools"
+        tools:targetApi="31">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="api" />
+
+        <activity
+            android:name=".MapsActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:label="Yeni Yer Ekle" />
+        <activity
+            android:name=".FavoriYerActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:label="Favori Yerler"/>
+        <activity
+            android:name=".ListeActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:label="Liste Hesapla"/>
+        <activity
+            android:name=".ZamanSayarActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:label="Zaman Sayaçları"/>
+        <activity
+            android:name=".KiloActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:label="İdeal Kilo"/>
+        <activity
+            android:name=".ParaSayActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:label="Para Sayar"/>
+        <activity
+            android:name=".YuzdelikActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:label="Yüzdelik Hesaplar"/>
+        <activity
+            android:name=".HesapMakinesiActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:label="Hesap Makinesi"/>
+        <activity
+            android:name=".NotActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:label="Not Defteri"/>
+        <activity
+            android:name=".RastgeleSifreActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:label="Rastgele Şifre"/>
+        <activity
+            android:name=".RastgeleNumaraActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:label="Rastgele Numara"/>
+        <activity
+            android:name=".KuraActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:label="Kura Çek"/>
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

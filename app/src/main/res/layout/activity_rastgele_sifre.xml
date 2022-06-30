@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RastgeleSifreActivity">
+
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="backClick"
+        android:text="geri"
+        app:layout_constraintBottom_toBottomOf="@+id/yuzdeButton"
+        app:layout_constraintStart_toStartOf="@+id/sayiText1" />
+
+    <TextView
+        android:id="@+id/winnerCountTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kullanılacak karakterleri ve karakter sayısını girin"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3" />
+
+    <EditText
+        android:id="@+id/sayiText1"
+        android:layout_width="110dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:hint="Karakter sayısı?"
+        android:inputType="number"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/winnerCountTextView"
+        app:layout_constraintTop_toBottomOf="@+id/winnerCountTextView" />
+
+    <Button
+        android:id="@+id/yuzdeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:onClick="olusturClick"
+        android:text="Oluştur"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="210dp"
+        android:layout_height="95dp"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="@+id/winnerCountTextView"
+        app:layout_constraintTop_toBottomOf="@+id/winnerCountTextView">
+
+        <LinearLayout
+            android:layout_width="105dp"
+            android:layout_height="95dp"
+            android:orientation="vertical">
+
+            <CheckBox
+                android:id="@+id/buyukCheck"
+                android:layout_width="106dp"
+                android:layout_height="47dp"
+                android:text="Büyük harf" />
+
+            <CheckBox
+                android:id="@+id/ozelCheck"
+                android:layout_width="106dp"
+                android:layout_height="47dp"
+                android:text="Özel karakter" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="105dp"
+            android:layout_height="95dp"
+            android:orientation="vertical">
+
+            <CheckBox
+                android:id="@+id/kucukCheck"
+                android:layout_width="106dp"
+                android:layout_height="47dp"
+                android:text="Küçük harf" />
+
+            <CheckBox
+                android:id="@+id/sayiCheck"
+                android:layout_width="106dp"
+                android:layout_height="47dp"
+                android:text="Sayı" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/sifreTextView"
+        android:layout_width="360dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="24dp"
+        android:hint="Şifre"
+        android:onClick="sifrekopyalaClick"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/winnerCountTextView"
+        app:layout_constraintEnd_toEndOf="@+id/winnerCountTextView"
+        app:layout_constraintStart_toStartOf="@+id/winnerCountTextView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

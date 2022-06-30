@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ZamanSayarActivity">
+
+    <TextView
+        android:id="@+id/textView25"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Kronometre"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView28"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Geri Sayım"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/kronodurButton" />
+
+    <TextView
+        android:id="@+id/kronoTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="00:00:00"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView25" />
+
+    <TextView
+        android:id="@+id/countTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="00:00:00"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="@+id/countEditText"
+        app:layout_constraintHorizontal_bias="0.547"
+        app:layout_constraintStart_toStartOf="@+id/countEditText"
+        app:layout_constraintTop_toBottomOf="@+id/countayarlaButton" />
+
+    <Button
+        android:id="@+id/kronobaslaButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="kronobaslaClick"
+        android:text="başla"
+        app:layout_constraintBottom_toBottomOf="@+id/kronodurButton"
+        app:layout_constraintEnd_toStartOf="@+id/kronodurButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/kronodurButton" />
+
+    <Button
+        android:id="@+id/countayarlaButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:onClick="countayarlaClick"
+        android:text="Ayarla"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/countEditText"
+        app:layout_constraintTop_toBottomOf="@+id/textView28" />
+
+    <Button
+        android:id="@+id/kronodurButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:onClick="kronodurClick"
+        android:text="Dur"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/kronoTimer" />
+
+    <Button
+        android:id="@+id/countdurButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:onClick="countdurClick"
+        android:text="Dur"
+        app:layout_constraintEnd_toEndOf="@+id/countbaslaButton"
+        app:layout_constraintHorizontal_bias="0.882"
+        app:layout_constraintStart_toStartOf="@+id/countbaslaButton"
+        app:layout_constraintTop_toBottomOf="@+id/countbaslaButton" />
+
+    <Button
+        android:id="@+id/kronosifirlaButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="kronosifirlaClick"
+        android:text="Sıfırla"
+        app:layout_constraintBottom_toBottomOf="@+id/kronodurButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/kronodurButton"
+        app:layout_constraintTop_toTopOf="@+id/kronodurButton" />
+
+    <EditText
+        android:id="@+id/countEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:ems="10"
+        android:hint="Saat:Dakika:Saniye"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="@+id/countayarlaButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/countayarlaButton" />
+
+    <Button
+        android:id="@+id/countbaslaButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:onClick="countbaslaClick"
+        android:text="Başla"
+        app:layout_constraintEnd_toEndOf="@+id/countayarlaButton"
+        app:layout_constraintStart_toStartOf="@+id/countayarlaButton"
+        app:layout_constraintTop_toBottomOf="@+id/countayarlaButton" />
+
+    <Button
+        android:id="@+id/countsifirlaButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:onClick="countsifirlaClick"
+        android:text="Sıfırla"
+        app:layout_constraintEnd_toEndOf="@+id/countdurButton"
+        app:layout_constraintStart_toStartOf="@+id/countdurButton"
+        app:layout_constraintTop_toBottomOf="@+id/countdurButton" />
+
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:onClick="backClick"
+        android:text="Geri"
+        app:layout_constraintBottom_toBottomOf="@+id/countsifirlaButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/countsifirlaButton" />
+</androidx.constraintlayout.widget.ConstraintLayout>
