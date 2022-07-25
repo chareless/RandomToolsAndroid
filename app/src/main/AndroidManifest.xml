@@ -16,6 +16,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RandomTools"
         tools:targetApi="31">
+        <activity
+            android:name=".SifreKaydetActivity"
+            android:exported="false"
+            android:label="Şifre Kaydet"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".SifrelerActivity"
+            android:exported="false"
+            android:label="Şifrelerim"
+            android:screenOrientation="portrait"/>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -24,67 +34,67 @@
         <activity
             android:name=".MapsActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
-            android:label="Yeni Yer Ekle" />
+            android:label="Yeni Yer Ekle"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".FavoriYerActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
-            android:label="Favori Yerler"/>
+            android:label="Favori Yerler"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ListeActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
-            android:label="Liste Hesapla"/>
+            android:label="Liste Hesapla"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ZamanSayarActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
-            android:label="Zaman Sayaçları"/>
+            android:label="Zaman Sayaçları"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".KiloActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
-            android:label="İdeal Kilo"/>
+            android:label="İdeal Kilo"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ParaSayActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
-            android:label="Para Sayar"/>
+            android:label="Para Sayar"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".YuzdelikActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
-            android:label="Yüzdelik Hesaplar"/>
+            android:label="Yüzdelik Hesaplar"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".HesapMakinesiActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
-            android:label="Hesap Makinesi"/>
+            android:label="Hesap Makinesi"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".NotActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
-            android:label="Not Defteri"/>
+            android:label="Not Defteri"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".RastgeleSifreActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
-            android:label="Rastgele Şifre"/>
+            android:label="Rastgele Şifre"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".RastgeleNumaraActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
-            android:label="Rastgele Numara"/>
+            android:label="Rastgele Numara"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".KuraActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
-            android:label="Kura Çek"/>
+            android:label="Kura Çek"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="portrait"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

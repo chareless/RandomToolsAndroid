@@ -128,4 +128,9 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this,FavoriYerActivity::class.java)
         startActivity(intent)
     }
+
+    fun sifrelerimClick(view : View){
+        val intent = Intent(this,SifrelerActivity::class.java)
+        startActivity(intent)
+    }
 }

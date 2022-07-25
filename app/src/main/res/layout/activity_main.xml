@@ -43,6 +43,20 @@
         app:layout_constraintTop_toTopOf="@+id/parasayarButton" />
 
     <Button
+        android:id="@+id/sifrelerimButton"
+        android:layout_width="115dp"
+        android:layout_height="70dp"
+        android:onClick="sifrelerimClick"
+        android:text="Şifrelerim"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/favoriyerButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.515"
+        app:layout_constraintStart_toEndOf="@+id/favoriyerButton"
+        app:layout_constraintTop_toTopOf="@+id/favoriyerButton"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
         android:id="@+id/parasayarButton"
         android:layout_width="115dp"
         android:layout_height="70dp"

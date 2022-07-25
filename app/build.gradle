@@ -14,8 +14,8 @@ android {
         applicationId "com.deniz.randomtools"
         minSdk 23
         targetSdk 32
-        versionCode 2
-        versionName "1.0"
+        versionCode 6
+        versionName "1.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
