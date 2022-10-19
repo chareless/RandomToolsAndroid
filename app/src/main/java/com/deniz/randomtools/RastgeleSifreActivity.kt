@@ -63,7 +63,7 @@ class RastgeleSifreActivity : AppCompatActivity() {
         val clipboard = getSystemService(ClipboardManager::class.java)
         val clip = ClipData.newPlainText("randomtools",sifreTextView.text)
         clipboard.setPrimaryClip(clip)
-        Toast.makeText(this,"Şifre kopyalandı",Toast.LENGTH_SHORT).show()
+        Toast.makeText(this,"Şifre kopyalandı.",Toast.LENGTH_SHORT).show()
     }
 
     fun backClick(view: View){

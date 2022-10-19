@@ -1,12 +1,14 @@
 package com.deniz.randomtools
 
+import android.content.ClipData
+import android.content.ClipboardManager
 import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.room.Room
-import com.deniz.randomtools.databinding.ActivityMapsBinding
 import com.deniz.randomtools.databinding.ActivitySifreKaydetBinding
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.model.LatLng
@@ -40,11 +42,19 @@ class SifreKaydetActivity : AppCompatActivity() {
             binding.sifreText.setText(it.sifre)
             binding.aciklamaText.setText(it.aciklama)
             binding.saveButton.visibility = View.GONE
+            binding.sifreText.isClickable= false
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 binding.baslikText.focusable = View.NOT_FOCUSABLE
                 binding.kadiText.focusable = View.NOT_FOCUSABLE
                 binding.sifreText.focusable = View.NOT_FOCUSABLE
                 binding.aciklamaText.focusable = View.NOT_FOCUSABLE
+                binding.sifreText.isClickable= true
+                binding.sifreText.setOnClickListener{
+                    val clipboard = getSystemService(ClipboardManager::class.java)
+                    val clip = ClipData.newPlainText("randomtools",binding.sifreText.text)
+                    clipboard.setPrimaryClip(clip)
+                    Toast.makeText(this,"Şifre kopyalandı.",Toast.LENGTH_SHORT).show()
+                }
             }
         }
 
@@ -54,8 +64,6 @@ class SifreKaydetActivity : AppCompatActivity() {
             binding.deleteButton.visibility=View.GONE
         }
     }
-
-
 
     fun save(view : View){
                 val sifre= Sifre(binding.baslikText.text.toString(),binding.kadiText.text.toString()

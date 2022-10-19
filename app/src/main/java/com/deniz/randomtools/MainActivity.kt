@@ -133,4 +133,9 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this,SifrelerActivity::class.java)
         startActivity(intent)
     }
+
+    fun ibanClick(view : View){
+        val intent = Intent(this,IBANActivity::class.java)
+        startActivity(intent)
+    }
 }
