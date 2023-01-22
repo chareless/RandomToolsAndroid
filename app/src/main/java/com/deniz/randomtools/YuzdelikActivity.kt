@@ -4,11 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import kotlinx.android.synthetic.main.activity_hesap_makinesi.*
-import kotlinx.android.synthetic.main.activity_kura.*
 import kotlinx.android.synthetic.main.activity_kura.sayiText1
 import kotlinx.android.synthetic.main.activity_yuzdelik.*
-import kotlinx.android.synthetic.main.activity_yuzdelik.view.*
 
 class YuzdelikActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

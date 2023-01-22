@@ -10,14 +10,9 @@ import android.view.View
 import android.widget.Toast
 import androidx.room.Room
 import com.deniz.randomtools.databinding.ActivitySifreKaydetBinding
-import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 
 class SifreKaydetActivity : AppCompatActivity() {
 

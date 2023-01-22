@@ -9,7 +9,6 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.recyclerview.widget.RecyclerView
 import com.deniz.randomtools.databinding.RecyclerRowIbanBinding
-import kotlinx.android.synthetic.main.activity_rastgele_sifre.*
 
 class IBANAdapter(val ibanList : List<IBAN>) : RecyclerView.Adapter<IBANAdapter.IBANHolder>() {
 

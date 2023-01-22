@@ -1,21 +1,17 @@
 package com.deniz.randomtools
 
-import android.content.ClipData
-import android.content.ClipboardManager
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.room.Room
 import com.deniz.randomtools.databinding.ActivityIbanlarBinding
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_rastgele_sifre.*
 
 class IBANActivity : AppCompatActivity() {
     private lateinit var binding : ActivityIbanlarBinding

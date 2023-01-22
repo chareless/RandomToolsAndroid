@@ -8,7 +8,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_zaman_sayar.*
 import java.lang.Exception
-import kotlin.concurrent.timer
 
 class ZamanSayarActivity : AppCompatActivity(), Runnable {
 

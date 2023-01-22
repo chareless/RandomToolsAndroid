@@ -138,4 +138,9 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this,IBANActivity::class.java)
         startActivity(intent)
     }
+
+    fun linkClick(view : View){
+        val intent = Intent(this,LinklerimActivity::class.java)
+        startActivity(intent)
+    }
 }

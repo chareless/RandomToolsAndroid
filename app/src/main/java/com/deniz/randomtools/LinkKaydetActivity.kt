@@ -9,47 +9,45 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.room.Room
-import com.deniz.randomtools.databinding.ActivityIbanKaydetBinding
+import com.deniz.randomtools.databinding.ActivityLinkKaydetBinding
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 
-class IBANKaydetActivity : AppCompatActivity(){
+class LinkKaydetActivity : AppCompatActivity(){
 
-    private lateinit var binding: ActivityIbanKaydetBinding
-    private lateinit var db:IBANDatabase
-    private lateinit var ibanDao : IBANDao
+    private lateinit var binding: ActivityLinkKaydetBinding
+    private lateinit var db:LinkDatabase
+    private lateinit var linkDao : LinkDao
     private val compositeDisposable = CompositeDisposable()
-    private var ibanFromMain : IBAN?=null
+    private var linkFromMain : Link?=null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityIbanKaydetBinding.inflate(layoutInflater)
+        binding = ActivityLinkKaydetBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        db = Room.databaseBuilder(applicationContext,IBANDatabase::class.java,"IBAN").build()
-        ibanDao = db.IBANDao()
+        db = Room.databaseBuilder(applicationContext,LinkDatabase::class.java,"Link").build()
+        linkDao = db.LinkDao()
 
-        ibanFromMain = intent.getSerializableExtra("new") as? IBAN
-        ibanFromMain?.let{
+        linkFromMain = intent.getSerializableExtra("new") as? Link
+        linkFromMain?.let{
             binding.baslikText.setText(it.baslik)
-            binding.bankaText.setText(it.banka)
-            binding.ibanText.setText(it.iban)
+            binding.linkText.setText(it.link)
             binding.aciklamaText.setText(it.aciklama)
             binding.saveButton.visibility = View.GONE
-            binding.ibanText.isClickable= false
+            binding.linkText.isClickable= false
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 binding.baslikText.focusable = View.NOT_FOCUSABLE
-                binding.bankaText.focusable = View.NOT_FOCUSABLE
-                binding.ibanText.focusable = View.NOT_FOCUSABLE
+                binding.linkText.focusable = View.NOT_FOCUSABLE
                 binding.aciklamaText.focusable = View.NOT_FOCUSABLE
-                binding.ibanText.isClickable= true
-                binding.ibanText.setOnClickListener{
+                binding.linkText.isClickable= true
+                binding.linkText.setOnClickListener{
                     val clipboard = getSystemService(ClipboardManager::class.java)
-                    val clip = ClipData.newPlainText("randomtools",binding.ibanText.text)
+                    val clip = ClipData.newPlainText("randomtools",binding.linkText.text)
                     clipboard.setPrimaryClip(clip)
-                    Toast.makeText(this,"IBAN '${binding.baslikText.text}' kopyalandı.",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this,"'${binding.baslikText.text}' linki kopyalandı.",Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -62,10 +60,10 @@ class IBANKaydetActivity : AppCompatActivity(){
     }
 
     fun save(view : View){
-        val iban= IBAN(binding.baslikText.text.toString(),binding.bankaText.text.toString()
-            ,binding.ibanText.text.toString(),binding.aciklamaText.text.toString())
+        val link= Link(binding.baslikText.text.toString(),binding.linkText.text.toString()
+            ,binding.aciklamaText.text.toString())
         compositeDisposable.add(
-            ibanDao.insert(iban).subscribeOn(Schedulers.io())
+            linkDao.insert(link).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::handleResponse)
         )
@@ -73,9 +71,9 @@ class IBANKaydetActivity : AppCompatActivity(){
     }
 
     fun delete(view : View){
-        ibanFromMain?.let{
+        linkFromMain?.let{
             compositeDisposable.add(
-                ibanDao.delete(it)
+                linkDao.delete(it)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(this::handleResponse)
@@ -84,13 +82,13 @@ class IBANKaydetActivity : AppCompatActivity(){
     }
 
     fun backClick(view : View){
-        val intent = Intent(this,IBANActivity::class.java)
+        val intent = Intent(this,LinklerimActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         startActivity(intent)
     }
 
     private fun handleResponse(){
-        val intent = Intent(this,IBANActivity::class.java)
+        val intent = Intent(this,LinklerimActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         startActivity(intent)
     }

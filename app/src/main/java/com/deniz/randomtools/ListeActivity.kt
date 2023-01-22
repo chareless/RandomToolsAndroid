@@ -4,14 +4,11 @@ import android.content.Intent
 import android.database.sqlite.SQLiteDatabase
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Display
 import android.view.View
-import android.widget.ArrayAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.deniz.randomtools.databinding.ActivityListeBinding
 import kotlinx.android.synthetic.main.activity_liste.*
 import java.lang.Exception
-import java.util.*
 import kotlin.collections.ArrayList
 
 class ListeActivity : AppCompatActivity() {

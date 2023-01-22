@@ -22,14 +22,25 @@
         android:id="@+id/ibanButton"
         android:layout_width="115dp"
         android:layout_height="70dp"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:onClick="ibanClick"
         android:text="Kayıtlı IBAN"
         android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="@+id/zamansayarButton"
+        app:layout_constraintEnd_toStartOf="@+id/linklerimButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/zamansayarButton" />
+
+    <Button
+        android:id="@+id/linklerimButton"
+        android:layout_width="115dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="16dp"
+        android:onClick="linkClick"
+        android:text="LİNKLERİM"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/favoriyerButton" />
 
     <Button
         android:id="@+id/favoriyerButton"
