@@ -38,12 +38,8 @@ class IBANKaydetActivity : AppCompatActivity(){
             binding.ibanText.setText(it.iban)
             binding.aciklamaText.setText(it.aciklama)
             binding.saveButton.visibility = View.GONE
-            binding.ibanText.isClickable= false
+            binding.updateButton.visibility = View.VISIBLE
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                binding.baslikText.focusable = View.NOT_FOCUSABLE
-                binding.bankaText.focusable = View.NOT_FOCUSABLE
-                binding.ibanText.focusable = View.NOT_FOCUSABLE
-                binding.aciklamaText.focusable = View.NOT_FOCUSABLE
                 binding.ibanText.isClickable= true
                 binding.ibanText.setOnClickListener{
                     val clipboard = getSystemService(ClipboardManager::class.java)
@@ -82,6 +78,29 @@ class IBANKaydetActivity : AppCompatActivity(){
             )
         }
     }
+
+    fun update(view: View) {
+        ibanFromMain?.let { ibanToUpdate -> // Use a more descriptive name
+            // Update the properties of ibanToUpdate from the EditText fields
+            ibanToUpdate.baslik = binding.baslikText.text.toString()
+            ibanToUpdate.banka = binding.bankaText.text.toString()
+            ibanToUpdate.iban = binding.ibanText.text.toString()
+            ibanToUpdate.aciklama = binding.aciklamaText.text.toString()
+
+            compositeDisposable.add(
+                ibanDao.update(ibanToUpdate) // Pass the modified object
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(
+                        { this.handleResponse() }, // onComplete
+                        { throwable ->
+                            Toast.makeText(this, "Error updating IBAN", Toast.LENGTH_SHORT).show()
+                        }
+                    )
+            )
+        }
+    }
+
 
     fun backClick(view : View){
         val intent = Intent(this,IBANActivity::class.java)

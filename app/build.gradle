@@ -8,14 +8,14 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    compileSdk 36
 
     defaultConfig {
         applicationId "com.deniz.randomtools"
         minSdk 23
-        targetSdk 32
-        versionCode 9
-        versionName "1.4"
+        targetSdk 36
+        versionCode 12
+        versionName "1.5"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -37,6 +37,7 @@ android {
     buildFeatures{
         viewBinding true
     }
+    namespace 'com.deniz.randomtools'
 }
 
 dependencies {
