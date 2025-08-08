@@ -37,12 +37,8 @@ class SifreKaydetActivity : AppCompatActivity() {
             binding.sifreText.setText(it.sifre)
             binding.aciklamaText.setText(it.aciklama)
             binding.saveButton.visibility = View.GONE
-            binding.sifreText.isClickable= false
+            binding.updateButton.visibility = View.VISIBLE
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                binding.baslikText.focusable = View.NOT_FOCUSABLE
-                binding.kadiText.focusable = View.NOT_FOCUSABLE
-                binding.sifreText.focusable = View.NOT_FOCUSABLE
-                binding.aciklamaText.focusable = View.NOT_FOCUSABLE
                 binding.sifreText.isClickable= true
                 binding.sifreText.setOnClickListener{
                     val clipboard = getSystemService(ClipboardManager::class.java)
@@ -57,6 +53,28 @@ class SifreKaydetActivity : AppCompatActivity() {
         val info = intent.getStringExtra("new")
         if(info == "yes") {
             binding.deleteButton.visibility=View.GONE
+        }
+    }
+
+    fun update(view: View) {
+        sifreFromMain?.let { sifreFromMain -> // Use a more descriptive name
+            // Update the properties of ibanToUpdate from the EditText fields
+            sifreFromMain.baslik = binding.baslikText.text.toString()
+            sifreFromMain.kadi = binding.kadiText.text.toString()
+            sifreFromMain.sifre = binding.sifreText.text.toString()
+            sifreFromMain.aciklama = binding.aciklamaText.text.toString()
+
+            compositeDisposable.add(
+                sifreDao.update(sifreFromMain) // Pass the modified object
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(
+                        { this.handleResponse() }, // onComplete
+                        { throwable ->
+                            Toast.makeText(this, "Error updating IBAN", Toast.LENGTH_SHORT).show()
+                        }
+                    )
+            )
         }
     }
 
