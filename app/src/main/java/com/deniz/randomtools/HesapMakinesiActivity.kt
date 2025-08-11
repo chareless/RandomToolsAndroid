@@ -4,97 +4,98 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import kotlinx.android.synthetic.main.activity_hesap_makinesi.*
+import com.deniz.randomtools.databinding.ActivityHesapMakinesiBinding
 
 class HesapMakinesiActivity : AppCompatActivity() {
 
-    private var result : Float = 0.0f
-    private var kontrol : Boolean = false
+    private lateinit var binding: ActivityHesapMakinesiBinding
+    private var result: Float = 0.0f
+    private var kontrol: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_hesap_makinesi)
+        binding = ActivityHesapMakinesiBinding.inflate(layoutInflater)
+        setContentView(binding.root)
     }
 
-    fun toplaClick(view : View){
-        if(number1Text.text.isNotEmpty() && number2Text.text.isNotEmpty()){
+    fun toplaClick(view: View) {
+        if (binding.number1Text.text.isNotEmpty() && binding.number2Text.text.isNotEmpty()) {
             kontrol = false
-            if(!number1Text.text.toString().equals("-") && !number2Text.text.toString().equals("-")
-                && !number1Text.text.toString().equals(".") && !number2Text.text.toString().equals(".")){
-                kontrol=true
+            if (binding.number1Text.text.toString() != "-" && binding.number2Text.text.toString() != "-" &&
+                binding.number1Text.text.toString() != "." && binding.number2Text.text.toString() != "."
+            ) {
+                kontrol = true
             }
-            if(kontrol){
-                val number1 = (number1Text.text.toString()).toFloat()
-                val number2 = (number2Text.text.toString()).toFloat()
-                result = (number1 + number2)
-                resultText.text = result.toString()
-                var myStr : String = String.format("%.4f", result)
-                resultText.text = myStr
+            if (kontrol) {
+                val number1 = binding.number1Text.text.toString().toFloat()
+                val number2 = binding.number2Text.text.toString().toFloat()
+                result = number1 + number2
+                val myStr = String.format("%.4f", result)
+                binding.resultText.text = myStr
             }
         }
     }
 
-    fun eksiClick(view:View){
-        if(number1Text.text.isNotEmpty() && number2Text.text.isNotEmpty()){
+    fun eksiClick(view: View) {
+        if (binding.number1Text.text.isNotEmpty() && binding.number2Text.text.isNotEmpty()) {
             kontrol = false
-            if(!number1Text.text.toString().equals("-") && !number2Text.text.toString().equals("-")
-                && !number1Text.text.toString().equals(".") && !number2Text.text.toString().equals(".")){
-                kontrol=true
+            if (binding.number1Text.text.toString() != "-" && binding.number2Text.text.toString() != "-" &&
+                binding.number1Text.text.toString() != "." && binding.number2Text.text.toString() != "."
+            ) {
+                kontrol = true
             }
-            if(kontrol){
-                val number1 = (number1Text.text.toString()).toFloat()
-                val number2 = (number2Text.text.toString()).toFloat()
-                result = (number1 - number2)
-                resultText.text = result.toString()
-                var myStr : String = String.format("%.4f", result)
-                resultText.text = myStr
+            if (kontrol) {
+                val number1 = binding.number1Text.text.toString().toFloat()
+                val number2 = binding.number2Text.text.toString().toFloat()
+                result = number1 - number2
+                val myStr = String.format("%.4f", result)
+                binding.resultText.text = myStr
             }
         }
     }
 
-    fun carpiClick(view:View){
-        if(number1Text.text.isNotEmpty() && number2Text.text.isNotEmpty()){
+    fun carpiClick(view: View) {
+        if (binding.number1Text.text.isNotEmpty() && binding.number2Text.text.isNotEmpty()) {
             kontrol = false
-            if(!number1Text.text.toString().equals("-") && !number2Text.text.toString().equals("-")
-                && !number1Text.text.toString().equals(".") && !number2Text.text.toString().equals(".")){
-                kontrol=true
+            if (binding.number1Text.text.toString() != "-" && binding.number2Text.text.toString() != "-" &&
+                binding.number1Text.text.toString() != "." && binding.number2Text.text.toString() != "."
+            ) {
+                kontrol = true
             }
-            if(kontrol){
-                val number1 = (number1Text.text.toString()).toFloat()
-                val number2 = (number2Text.text.toString()).toFloat()
-                result = (number1 * number2)
-                resultText.text = result.toString()
-                var myStr : String = String.format("%.4f", result)
-                resultText.text = myStr
+            if (kontrol) {
+                val number1 = binding.number1Text.text.toString().toFloat()
+                val number2 = binding.number2Text.text.toString().toFloat()
+                result = number1 * number2
+                val myStr = String.format("%.4f", result)
+                binding.resultText.text = myStr
             }
         }
     }
 
-    fun bolClick(view:View){
-        if(number1Text.text.isNotEmpty() && number2Text.text.isNotEmpty()){
+    fun bolClick(view: View) {
+        if (binding.number1Text.text.isNotEmpty() && binding.number2Text.text.isNotEmpty()) {
             kontrol = false
-            if(!number1Text.text.toString().equals("-") && !number2Text.text.toString().equals("-")
-                && !number1Text.text.toString().equals(".") && !number2Text.text.toString().equals(".")){
-                kontrol=true
+            if (binding.number1Text.text.toString() != "-" && binding.number2Text.text.toString() != "-" &&
+                binding.number1Text.text.toString() != "." && binding.number2Text.text.toString() != "."
+            ) {
+                kontrol = true
             }
-            if(kontrol){
-                val number1 = (number1Text.text.toString()).toFloat()
-                val number2 = (number2Text.text.toString()).toFloat()
-                if(number2!=0f){
-                    result = (number1 / number2)
-                    resultText.text = result.toString()
-                    var myStr : String = String.format("%.4f", result)
-                    resultText.text = myStr
+            if (kontrol) {
+                val number1 = binding.number1Text.text.toString().toFloat()
+                val number2 = binding.number2Text.text.toString().toFloat()
+                if (number2 != 0f) {
+                    result = number1 / number2
+                    val myStr = String.format("%.4f", result)
+                    binding.resultText.text = myStr
+                } else {
+                    binding.resultText.text = "Geçersiz İşlem"
                 }
-                else{
-                    resultText.text = "Geçersiz İşlem"
-                }
             }
         }
     }
 
-    fun backClick(view:View){
-        val intent = Intent(this,MainActivity::class.java)
+    fun backClick(view: View) {
+        val intent = Intent(this, MainActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         startActivity(intent)
     }

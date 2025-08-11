@@ -7,67 +7,67 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import kotlinx.android.synthetic.main.activity_rastgele_sifre.*
+import com.deniz.randomtools.databinding.ActivityRastgeleSifreBinding
+import kotlin.random.Random
 
 class RastgeleSifreActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityRastgeleSifreBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_rastgele_sifre)
+        binding = ActivityRastgeleSifreBinding.inflate(layoutInflater)
+        setContentView(binding.root)
     }
 
-    fun olusturClick(view: View){
-        if(sayiText1.text.isNotEmpty()){
-            val sifreSayi = Integer.parseInt(sayiText1.text.toString())
+    fun olusturClick(view: View) {
+        val inputText = binding.sayiText1.text.toString()
+        val sifreSayi = inputText.toIntOrNull()
 
-            if(sifreSayi in 1..16){
-                var totalChars : String=""
-                var pass:String = ""
-                val kucuk = kucukCheck.isChecked
-                val buyuk = buyukCheck.isChecked
-                val ozel = ozelCheck.isChecked
-                val sayi = sayiCheck.isChecked
+        if (sifreSayi == null) {
+            binding.sifreTextView.text = "Karakter sayısını girin."
+            return
+        }
 
-                if(kucuk){
-                    totalChars+="abcdefghijklmnopqrstuvwxyz"
-                }
-                if(buyuk){
-                    totalChars+="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-                }
-                if(sayi){
-                    totalChars+="0123456789"
-                }
-                if(ozel){
-                    totalChars+="@#=+!£$%&?"
-                }
+        if (sifreSayi !in 1..16) {
+            binding.sifreTextView.text = "Karakter aralığı (1..16) olmalı."
+            return
+        }
 
-                if(kucuk || buyuk || ozel || sayi){
-                    for(i in 1..sifreSayi){
-                        pass += totalChars[Math.floor(Math.random() * totalChars.length).toInt()].toString()
-                    }
-                    sifreTextView.text = pass.toString()
-                }
-                else{
-                    sifreTextView.text = "En az 1 karakter türü seçin."
-                }
-            }
-            else{
-                sifreTextView.text = "Karakter aralığı (0,17) olmalı."
+        val kucuk = binding.kucukCheck.isChecked
+        val buyuk = binding.buyukCheck.isChecked
+        val ozel = binding.ozelCheck.isChecked
+        val sayi = binding.sayiCheck.isChecked
+
+        var totalChars = ""
+        if (kucuk) totalChars += "abcdefghijklmnopqrstuvwxyz"
+        if (buyuk) totalChars += "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        if (sayi) totalChars += "0123456789"
+        if (ozel) totalChars += "@#=+!£$%&?"
+
+        if (totalChars.isEmpty()) {
+            binding.sifreTextView.text = "En az 1 karakter türü seçin."
+            return
+        }
+
+        val pass = buildString {
+            repeat(sifreSayi) {
+                append(totalChars[Random.nextInt(totalChars.length)])
             }
         }
-        else{
-            sifreTextView.text = "Karakter sayısını girin."
-        }
+
+        binding.sifreTextView.text = pass
     }
 
-    fun sifrekopyalaClick(view:View){
+    fun sifrekopyalaClick(view: View) {
         val clipboard = getSystemService(ClipboardManager::class.java)
-        val clip = ClipData.newPlainText("randomtools",sifreTextView.text)
+        val clip = ClipData.newPlainText("randomtools", binding.sifreTextView.text)
         clipboard.setPrimaryClip(clip)
-        Toast.makeText(this,"Şifre kopyalandı.",Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Şifre kopyalandı.", Toast.LENGTH_SHORT).show()
     }
 
-    fun backClick(view: View){
-        val intent = Intent(this,MainActivity::class.java)
+    fun backClick(view: View) {
+        val intent = Intent(this, MainActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         startActivity(intent)
     }

@@ -10,7 +10,8 @@
         android:id="@+id/textView25"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="72dp"
+
         android:text="Kronometre"
         android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"

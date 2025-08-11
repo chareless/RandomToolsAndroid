@@ -2,7 +2,6 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-android'
-    id 'kotlin-android-extensions'
     id 'kotlin-kapt'
     id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 }
@@ -14,8 +13,8 @@ android {
         applicationId "com.deniz.randomtools"
         minSdk 23
         targetSdk 36
-        versionCode 13
-        versionName "1.6"
+        versionCode 14
+        versionName "1.7"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
