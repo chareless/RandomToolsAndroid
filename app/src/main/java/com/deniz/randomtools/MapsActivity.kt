@@ -116,6 +116,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLon
                 binding.placeText.setText(it.name)
                 binding.infoText.setText(it.info)
                 binding.saveButton.visibility = View.GONE
+                binding.updateButton.visibility = View.VISIBLE
                 binding.deleteButton.visibility= View.VISIBLE
             }
         }
@@ -173,6 +174,72 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLon
                         .subscribe(this::handleResponse)
                 )
             }
+        }
+    }
+
+    fun update(view: View) {
+        // Ensure placeFromMain is not null, as it holds the existing place with its ID
+        placeFromMain?.let { existingPlace ->
+            // Use the new location if the user long-clicked on the map
+            // Otherwise, keep the existing location
+            val latitudeToUpdate = selectedLatitude ?: existingPlace.latitude
+            val longitudeToUpdate = selectedLongitude ?: existingPlace.longitude
+
+            val placeName = binding.placeText.text.toString()
+            val placeInfo = binding.infoText.text.toString()
+            val formattedTime: String // Changed variable name from 'formatted' to 'formattedTime' for clarity
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                val date = LocalDateTime.now()
+                val formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss")
+                formattedTime = date.format(formatter)
+            } else {
+                // For older APIs, you might want to preserve the original time,
+                // or get current time using older methods if needed.
+                // Using existingPlace.time ensures the original time is kept if not on API 26+
+                formattedTime = existingPlace.time
+                // Alternatively, if you always want a new timestamp (even if less precise or empty on older APIs):
+                // val currentTimeMillis = System.currentTimeMillis()
+                // val sdf = java.text.SimpleDateFormat("dd.MM.yyyy HH:mm:ss", Locale.getDefault())
+                // formattedTime = sdf.format(java.util.Date(currentTimeMillis))
+                // Or simply:
+                // formattedTime = "" // as in your original save function's else block
+            }
+
+            // Create the Place object for the update.
+            // It's CRUCIAL to set the 'id' from the 'existingPlace'.
+            val updatedPlace = Place(
+                name = placeName,
+                info = placeInfo,
+                time = formattedTime, // Use the 'time' field as per your Place entity
+                latitude = latitudeToUpdate,
+                longitude = longitudeToUpdate
+            ).apply {
+                // Set the id from the existingPlace to tell Room which record to update
+                id = existingPlace.id
+            }
+
+            compositeDisposable.add(
+                placeDao.update(updatedPlace) // Use the update DAO method
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(
+                        {
+                            // Successfully updated
+                            this.handleResponse() // Navigate back or give success feedback
+                        },
+                        { throwable ->
+                            // Error during update
+                            Toast.makeText(this, "Error updating place: ${throwable.message}", Toast.LENGTH_LONG).show()
+                            // You might want to log the error as well
+                            // Log.e("MapsActivity", "Failed to update place", throwable)
+                        }
+                    )
+            )
+        } ?: run {
+            // This block executes if placeFromMain is null.
+            // This shouldn't happen if the update button is only visible when editing an existing place.
+            Toast.makeText(this, "Error: No place data found to update.", Toast.LENGTH_SHORT).show()
         }
     }
 

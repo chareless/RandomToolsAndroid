@@ -6,226 +6,188 @@ import android.os.Handler
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_zaman_sayar.*
+import com.deniz.randomtools.databinding.ActivityZamanSayarBinding
 import java.lang.Exception
 
-class ZamanSayarActivity : AppCompatActivity(), Runnable {
+class ZamanSayarActivity : AppCompatActivity() {
 
-    var Krunnable: Runnable = Runnable {  }
-    var Crunnable: Runnable = Runnable {  }
-    var Khandler: Handler = Handler()
-    var Chandler: Handler = Handler()
-    var kronoSaat : Int = 0
-    var kronoDakika : Int = 0
-    var kronoSaniye : Int = 0
-    var kFinish : Boolean = false
-    var countSaat : Int = 0
-    var countDakika : Int = 0
-    var countSaniye : Int = 0
-    var cFinish : Boolean = false
+    private lateinit var binding: ActivityZamanSayarBinding
+
+    private var kronoSaat: Int = 0
+    private var kronoDakika: Int = 0
+    private var kronoSaniye: Int = 0
+    private var kFinish: Boolean = false
+
+    private var countSaat: Int = 0
+    private var countDakika: Int = 0
+    private var countSaniye: Int = 0
+    private var cFinish: Boolean = false
+
+    private val Khandler: Handler = Handler()
+    private val Chandler: Handler = Handler()
+
+    private lateinit var Krunnable: Runnable
+    private lateinit var Crunnable: Runnable
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_zaman_sayar)
-        kronodurButton.visibility = View.INVISIBLE
-        countdurButton.visibility = View.INVISIBLE
-        countbaslaButton.visibility = View.INVISIBLE
+        binding = ActivityZamanSayarBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.kronodurButton.visibility = View.INVISIBLE
+        binding.countdurButton.visibility = View.INVISIBLE
+        binding.countbaslaButton.visibility = View.INVISIBLE
     }
 
-    fun kronoFormatCheck(){
-        var part1:String
-        var part2:String
-        var part3:String
-        if(kronoSaat<10){
-            part1 = "0$kronoSaat:"
-        }
-        else{
-            part1 = "$kronoSaat:"
-        }
-
-        if(kronoDakika<10){
-            part2= "0$kronoDakika:"
-        }
-        else{
-            part2="$kronoDakika:"
-        }
-
-        if(kronoSaniye <10){
-            part3 = "0$kronoSaniye"
-        }
-        else{
-            part3= "$kronoSaniye"
-        }
-        kronoTimer.text = part1+part2+part3
+    private fun kronoFormatCheck() {
+        val part1 = if (kronoSaat < 10) "0$kronoSaat:" else "$kronoSaat:"
+        val part2 = if (kronoDakika < 10) "0$kronoDakika:" else "$kronoDakika:"
+        val part3 = if (kronoSaniye < 10) "0$kronoSaniye" else "$kronoSaniye"
+        binding.kronoTimer.text = part1 + part2 + part3
     }
 
-    fun kronobaslaClick(view : View){
-
+    fun kronobaslaClick(view: View) {
         Krunnable = object : Runnable {
             override fun run() {
                 kronoFormatCheck()
-                if(!kFinish){
+                if (!kFinish) {
                     kronoSaniye++
-                    if(kronoSaniye == 60){
-                        kronoSaniye=0
+                    if (kronoSaniye == 60) {
+                        kronoSaniye = 0
                         kronoDakika++
                     }
-                    if(kronoDakika == 60) {
-                        kronoDakika=0
+                    if (kronoDakika == 60) {
+                        kronoDakika = 0
                         kronoSaat++
                     }
-                    if(kronoSaat ==23 && kronoDakika == 59 && kronoSaniye == 59){
-                        kFinish=true
+                    if (kronoSaat == 23 && kronoDakika == 59 && kronoSaniye == 59) {
+                        kFinish = true
                     }
                     Khandler.postDelayed(this, 1000)
-                    kronobaslaButton.visibility = View.INVISIBLE
-                    kronodurButton.visibility = View.VISIBLE
-                }
-                else{
+                    binding.kronobaslaButton.visibility = View.INVISIBLE
+                    binding.kronodurButton.visibility = View.VISIBLE
+                } else {
                     Khandler.removeCallbacks(Krunnable)
-                    kronobaslaButton.visibility = View.VISIBLE
-                    kronodurButton.visibility = View.INVISIBLE
+                    binding.kronobaslaButton.visibility = View.VISIBLE
+                    binding.kronodurButton.visibility = View.INVISIBLE
                 }
             }
         }
         Khandler.post(Krunnable)
     }
 
-    fun kronodurClick(view : View){
+    fun kronodurClick(view: View) {
         Khandler.removeCallbacks(Krunnable)
-        kronobaslaButton.visibility = View.VISIBLE
-        kronodurButton.visibility = View.INVISIBLE
+        binding.kronobaslaButton.visibility = View.VISIBLE
+        binding.kronodurButton.visibility = View.INVISIBLE
     }
 
-    fun kronosifirlaClick(view : View){
+    fun kronosifirlaClick(view: View) {
         Khandler.removeCallbacks(Krunnable)
-        kronobaslaButton.visibility = View.VISIBLE
-        kronodurButton.visibility = View.INVISIBLE
-        kronoSaniye=0
-        kronoDakika=0
-        kronoSaat=0
-        kFinish=false
+        binding.kronobaslaButton.visibility = View.VISIBLE
+        binding.kronodurButton.visibility = View.INVISIBLE
+        kronoSaat = 0
+        kronoDakika = 0
+        kronoSaniye = 0
+        kFinish = false
         kronoFormatCheck()
     }
 
-    fun countFormatCheck(){
-        var part1:String
-        var part2:String
-        var part3:String
-        if(countSaat<10){
-            part1 = "0$countSaat:"
-        }
-        else{
-            part1 = "$countSaat:"
-        }
-
-        if(countDakika<10){
-            part2= "0$countDakika:"
-        }
-        else{
-            part2="$countDakika:"
-        }
-
-        if(countSaniye <10){
-            part3 = "0$countSaniye"
-        }
-        else{
-            part3= "$countSaniye"
-        }
-        countTimer.text = part1+part2+part3
+    private fun countFormatCheck() {
+        val part1 = if (countSaat < 10) "0$countSaat:" else "$countSaat:"
+        val part2 = if (countDakika < 10) "0$countDakika:" else "$countDakika:"
+        val part3 = if (countSaniye < 10) "0$countSaniye" else "$countSaniye"
+        binding.countTimer.text = part1 + part2 + part3
     }
 
-    fun countayarlaClick(view : View){
-        var editing = countEditText.text.toString()
-        try{
-            var times = editing.split(":")
+    fun countayarlaClick(view: View) {
+        val editing = binding.countEditText.text.toString()
+        try {
+            val times = editing.split(":")
             countSaat = times[0].toInt()
             countDakika = times[1].toInt()
             countSaniye = times[2].toInt()
-            cFinish=false
-            countbaslaButton.visibility = View.VISIBLE
-            countdurButton.visibility = View.INVISIBLE
-        }catch(e : Exception) {
-            Toast.makeText(this,"Lütfen geçerli formatta değer giriniz.",Toast.LENGTH_SHORT).show()
+            cFinish = false
+            binding.countbaslaButton.visibility = View.VISIBLE
+            binding.countdurButton.visibility = View.INVISIBLE
+        } catch (e: Exception) {
+            Toast.makeText(this, "Lütfen geçerli formatta değer giriniz.", Toast.LENGTH_SHORT).show()
             countSaat = 0
             countDakika = 0
             countSaniye = 0
-            cFinish=true
+            cFinish = true
             countFormatCheck()
-            countbaslaButton.visibility = View.INVISIBLE
-            countdurButton.visibility = View.INVISIBLE
+            binding.countbaslaButton.visibility = View.INVISIBLE
+            binding.countdurButton.visibility = View.INVISIBLE
         }
 
-        if(countSaat>23 || countDakika >59 || countSaniye >59 || countSaat <0 || countDakika <0 || countSaniye <0){
-            Toast.makeText(this,"Lütfen geçerli formatta değer giriniz.",Toast.LENGTH_SHORT).show()
+        if (countSaat !in 0..23 || countDakika !in 0..59 || countSaniye !in 0..59) {
+            Toast.makeText(this, "Lütfen geçerli formatta değer giriniz.", Toast.LENGTH_SHORT).show()
             countSaat = 0
             countDakika = 0
             countSaniye = 0
-            cFinish=true
-            countbaslaButton.visibility = View.INVISIBLE
-            countdurButton.visibility = View.INVISIBLE
+            cFinish = true
+            binding.countbaslaButton.visibility = View.INVISIBLE
+            binding.countdurButton.visibility = View.INVISIBLE
         }
 
-        countEditText.setText("")
-        Chandler.removeCallbacks(Crunnable)
+        binding.countEditText.setText("")
+        if (::Crunnable.isInitialized) {
+            Chandler.removeCallbacks(Crunnable)
+        }
         countFormatCheck()
     }
 
-    fun countbaslaClick(view : View){
+    fun countbaslaClick(view: View) {
         Crunnable = object : Runnable {
             override fun run() {
                 countFormatCheck()
-                if(!cFinish){
+                if (!cFinish) {
                     countSaniye--
-                    if(countSaniye<0){
+                    if (countSaniye < 0) {
                         countSaniye = 59
-                        countDakika --
+                        countDakika--
                     }
-                    if(countDakika <0){
+                    if (countDakika < 0) {
                         countDakika = 59
-                        countSaat --
+                        countSaat--
                     }
-                    if(countSaat == 0 && countDakika == 0 && countSaniye == 0){
-                        cFinish=true
+                    if (countSaat == 0 && countDakika == 0 && countSaniye == 0) {
+                        cFinish = true
                     }
                     Chandler.postDelayed(this, 1000)
-                    countbaslaButton.visibility = View.INVISIBLE
-                    countdurButton.visibility = View.VISIBLE
-                }
-                else{
+                    binding.countbaslaButton.visibility = View.INVISIBLE
+                    binding.countdurButton.visibility = View.VISIBLE
+                } else {
                     Chandler.removeCallbacks(Crunnable)
-                    countbaslaButton.visibility = View.VISIBLE
-                    countdurButton.visibility = View.INVISIBLE
+                    binding.countbaslaButton.visibility = View.VISIBLE
+                    binding.countdurButton.visibility = View.INVISIBLE
                 }
             }
         }
         Chandler.post(Crunnable)
     }
 
-    fun countdurClick(view : View){
+    fun countdurClick(view: View) {
         Chandler.removeCallbacks(Crunnable)
-        countbaslaButton.visibility = View.VISIBLE
-        countdurButton.visibility = View.INVISIBLE
+        binding.countbaslaButton.visibility = View.VISIBLE
+        binding.countdurButton.visibility = View.INVISIBLE
     }
 
-    fun countsifirlaClick(view : View){
+    fun countsifirlaClick(view: View) {
         Chandler.removeCallbacks(Crunnable)
-        countbaslaButton.visibility = View.INVISIBLE
-        countdurButton.visibility = View.INVISIBLE
-        countSaniye=0
-        countDakika=0
-        countSaat=0
-        cFinish=false
+        binding.countbaslaButton.visibility = View.INVISIBLE
+        binding.countdurButton.visibility = View.INVISIBLE
+        countSaat = 0
+        countDakika = 0
+        countSaniye = 0
+        cFinish = false
         countFormatCheck()
     }
 
-    fun backClick(view : View){
-        val intent = Intent(this,MainActivity::class.java)
+    fun backClick(view: View) {
+        val intent = Intent(this, MainActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         startActivity(intent)
-    }
-
-    override fun run() {
-        TODO("Not yet implemented")
     }
 }

@@ -2,20 +2,19 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-android'
-    id 'kotlin-android-extensions'
     id 'kotlin-kapt'
     id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 }
 
 android {
-    compileSdk 32
+    compileSdk 36
 
     defaultConfig {
         applicationId "com.deniz.randomtools"
         minSdk 23
-        targetSdk 32
-        versionCode 9
-        versionName "1.4"
+        targetSdk 36
+        versionCode 14
+        versionName "1.7"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -37,6 +36,7 @@ android {
     buildFeatures{
         viewBinding true
     }
+    namespace 'com.deniz.randomtools'
 }
 
 dependencies {

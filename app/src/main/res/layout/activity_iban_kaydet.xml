@@ -72,14 +72,26 @@
         map:layout_constraintTop_toBottomOf="@+id/aciklamaText" />
 
     <Button
-        android:id="@+id/deleteButton"
+        android:id="@+id/updateButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
+        android:onClick="update"
+        android:text="KAYDET"
+        android:visibility="invisible"
+        map:layout_constraintEnd_toEndOf="parent"
+        map:layout_constraintTop_toBottomOf="@+id/aciklamaText" />
+
+    <Button
+        android:id="@+id/deleteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:onClick="delete"
         android:text="SİL"
-        map:layout_constraintEnd_toStartOf="@+id/saveButton"
+        map:layout_constraintEnd_toEndOf="@+id/saveButton"
+        map:layout_constraintStart_toEndOf="@+id/deleteButton2"
         map:layout_constraintTop_toBottomOf="@+id/aciklamaText" />
 
     <Button
@@ -98,7 +110,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="68dp"
         android:text="Başlık : "
         android:textSize="20sp"
         map:layout_constraintStart_toStartOf="parent"

@@ -37,11 +37,9 @@ class LinkKaydetActivity : AppCompatActivity(){
             binding.linkText.setText(it.link)
             binding.aciklamaText.setText(it.aciklama)
             binding.saveButton.visibility = View.GONE
+            binding.updateButton.visibility = View.VISIBLE
             binding.linkText.isClickable= false
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                binding.baslikText.focusable = View.NOT_FOCUSABLE
-                binding.linkText.focusable = View.NOT_FOCUSABLE
-                binding.aciklamaText.focusable = View.NOT_FOCUSABLE
                 binding.linkText.isClickable= true
                 binding.linkText.setOnClickListener{
                     val clipboard = getSystemService(ClipboardManager::class.java)
@@ -56,6 +54,27 @@ class LinkKaydetActivity : AppCompatActivity(){
         val info = intent.getStringExtra("new")
         if(info == "yes") {
             binding.deleteButton.visibility= View.GONE
+        }
+    }
+
+    fun update(view: View) {
+        linkFromMain?.let { linkToUpdate -> // Use a more descriptive name
+            // Update the properties of ibanToUpdate from the EditText fields
+            linkToUpdate.baslik = binding.baslikText.text.toString()
+            linkToUpdate.link = binding.linkText.text.toString()
+            linkToUpdate.aciklama = binding.aciklamaText.text.toString()
+
+            compositeDisposable.add(
+                linkDao.update(linkToUpdate) // Pass the modified object
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(
+                        { this.handleResponse() }, // onComplete
+                        { throwable ->
+                            Toast.makeText(this, "Error updating Link", Toast.LENGTH_SHORT).show()
+                        }
+                    )
+            )
         }
     }
 
